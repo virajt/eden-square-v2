@@ -2,21 +2,27 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-mono: "Montserrat", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-serif: "Cormorant Garamond", serif;
 }
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
-  --primary: #D4AF37; /* Royal Gold */
-  --secondary: #121212; /* Charcoal */
-  --accent: #FFD700; /* Pure Gold */
+  /* Artisan Harvest Palette */
+  --background: #FCF9F2; /* Warm Parchment */
+  --foreground: #2D2926; /* Charcoal Coffee */
+  
+  --primary: #4A5D4E;    /* Deep Forest Sage (Grocery/Bakery) */
+  --secondary: #A67C52;  /* Roasted Almond (Coffee/Bakery) */
+  --accent: #D98C45;     /* Burnt Orange (Citrus/Freshness) */
+  --highlight: #F2E3D5;  /* Creamy Oat (Backgrounds) */
+  
+  --border: #E5E1D8;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #000000;
-    --foreground: #ffffff;
+    --background: #1A1C19;
+    --foreground: #F2F2F2;
+    --border: #2D2D2D;
   }
 }
 
@@ -27,26 +33,75 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-mono);
+  font-family: var(--font-serif);
+  font-weight: 600;
+}
+
+/* Artisan UI Components */
+
+.artisan-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.artisan-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -10px rgba(74, 93, 78, 0.15);
+  border-color: var(--primary);
+}
+
+.artisan-button {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.artisan-button:hover {
+  background-color: #3d4d41;
+  transform: scale(1.02);
+}
+
+.coffee-badge {
+  background: var(--secondary);
+  color: white;
+  font-size: 0.65rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
 
-.gold-gradient {
-  background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+.bakery-badge {
+  background: var(--accent);
+  color: white;
+  font-size: 0.65rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.grocery-badge {
+  background: var(--primary);
+  color: white;
+  font-size: 0.65rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.nature-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.gold-button {
-  background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
-  color: black;
-  font-weight: bold;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.25rem;
-  transition: transform 0.2s;
-}
-
-.gold-button:hover {
-  transform: scale(1.05);
 }
