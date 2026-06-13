@@ -1,12 +1,19 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { checkRateLimit } from '@/lib/security/rateLimit';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-02-15-preview',
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_build_dummy", {
+  apiVersion: '2026-05-27.dahlia',
 });
 
 export async function POST(req: Request) {
   try {
+    // Security Swarm: Apply rate limiting to checkout tunnel
+    const ip = req.headers.get('x-forwarded-for') || 'anonymous';
+    if (!checkRateLimit(ip, 10)) {
+        return NextResponse.json({ error: 'Rate limit exceeded. System protection active.' }, { status: 429 });
+    }
+
     const { amount, currency = 'nzd', items } = await req.json();
 
     // Financial Audit: Log the intent for Project One Million tracking

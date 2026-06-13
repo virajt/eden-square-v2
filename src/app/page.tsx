@@ -185,21 +185,6 @@ export default function Home() {
            </div>
         </div>
       </footer>
-      
-      <style jsx global>{`
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-        .nature-text {
-          background: linear-gradient(135deg, #4A5D4E 0%, #A67C52 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-      `}</style>
     </div>
   );
 }
